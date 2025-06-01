@@ -1,14 +1,14 @@
 # Base image with Bun pre-installed
-FROM oven/bun:1.0.25
+FROM node:18-alpine
 
 # Set the working directory inside the container
 WORKDIR /app
 
 # Copy Bun lockfile and package.json
-COPY bun.lockb package.json ./
+COPY package.json ./
 
 # Install dependencies using Bun
-RUN bun install
+RUN npm install
 
 # Copy the rest of the application code
 COPY . .
@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 3000
 
 # Start the Next.js development server
-CMD ["bun", "run", "dev"]
+CMD ["bun", "run", "dev","--turbo"]
